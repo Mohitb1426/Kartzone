@@ -9,23 +9,19 @@ import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Slider } from '@material-ui/core';
 import Products from '../../Products.json'
-import { useDispatch } from 'react-redux';
-import { handleProduct } from '../../reduxToolkit/CreateSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { handleProduct, handleSlider } from '../../reduxToolkit/CreateSlice'
 import './drawer.scss'
 
 export default function SwipeableTemporaryDrawer(props) {
     const [state, setState] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
+    const [value, setValue] = React.useState(true);
     const dispatch = useDispatch();
-    const toggleDrawer = () => {
-        setState(!state);
-    }
-    const handleShorts = (item) => {
-        const displayproducts = Products.arrayOfProducts.filter(product => product.type === item)
-        console.log(displayproducts)
-        setState(false);
-    }
+    const allProducts = useSelector((state) => state.Change.value.finalProduct);
+
     const loaderEnable = (Type) => {
+        // setState(false);
         setLoading(true);
         setTimeout(() => setLoading(false), 2000);
         dispatch(handleProduct({ type: Type }))
@@ -33,6 +29,10 @@ export default function SwipeableTemporaryDrawer(props) {
     function valuetext(value: number) {
         return `${value}°C`;
     }
+    const sliderChange = (event, newValue) => {
+        setValue(newValue);
+        dispatch(handleSlider({ filterProduct: allProducts, price: newValue }))
+    };
     const list = () => (
         <Box
             sx={{
@@ -62,13 +62,15 @@ export default function SwipeableTemporaryDrawer(props) {
                     <ListItemText > <Box sx={{ width: 300 }}>
                         <Slider
                             aria-label="Small steps"
-                            defaultValue={0.00000005}
+                            defaultValue={10}
                             getAriaValueText={valuetext}
-                            step={0.00000001}
+                            step={10}
+                            onChange={sliderChange}
                             marks
-                            min={-0.00000005}
-                            max={0.0000001}
+                            min={10}
+                            max={1000}
                             valueLabelDisplay="auto"
+                            value={value}
                         />
                     </Box></ListItemText>
                 </ListItem>

@@ -4,7 +4,8 @@ import Prod from '../Products.json'
 const myProducts = Prod.arrayOfProducts;
 const initialState = {
     value: {
-        finalProduct: myProducts
+        finalProduct: myProducts,
+        filterProduct: []
     },
 }
 
@@ -17,8 +18,13 @@ export const counterSlice = createSlice({
             const displayproducts = myProducts.filter(product => product.type === type)
             state.value.finalProduct = displayproducts;
         },
+        handleSlider: (state, action) => {
+            const { filterProduct, price } = action.payload;
+            const displayFilterProducts = filterProduct.filter(product => product.price <= price)
+            state.value.filterProduct = displayFilterProducts;
+        },
     },
 })
-export const { handleProduct } = counterSlice.actions
+export const { handleProduct, handleSlider } = counterSlice.actions
 
 export default counterSlice.reducer

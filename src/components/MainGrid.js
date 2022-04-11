@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import './mainGrid.scss'
 
 export default function MainGrid() {
-    const allProducts = useSelector((state) => state.Change.value.finalProduct);
+    const allProducts = useSelector((state) =>state && state.Change.value.filterProduct.length > 1 ? state.Change.value.filterProduct : state.Change.value.finalProduct);
     return (
         <div>
             <Grid container columns={20}>
