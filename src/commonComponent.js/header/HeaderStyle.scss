@@ -1,0 +1,8 @@
+.header-div {
+  flex-grow: 1;
+  &__menu {
+    width: 50em;
+    height: 20em;
+    margin-right: 2em;
+  }
+}
