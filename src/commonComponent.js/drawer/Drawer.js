@@ -8,7 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Slider } from '@material-ui/core';
-import Products from '../../Products.json'
 import { useDispatch, useSelector } from 'react-redux';
 import { handleProduct, handleSlider } from '../../reduxToolkit/CreateSlice'
 import './drawer.scss'
@@ -16,7 +15,7 @@ import './drawer.scss'
 export default function SwipeableTemporaryDrawer(props) {
     const [state, setState] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
-    const [value, setValue] = React.useState(true);
+    const [value, setValue] = React.useState([0, 1000]);
     const dispatch = useDispatch();
     const allProducts = useSelector((state) => state.Change.value.finalProduct);
 
@@ -26,11 +25,13 @@ export default function SwipeableTemporaryDrawer(props) {
         setTimeout(() => setLoading(false), 2000);
         dispatch(handleProduct({ type: Type }))
     }
-    function valuetext(value: number) {
-        return `${value}°C`;
-    }
+    // function valuetext(value: number) {
+    //     return `${value}°C`;
+    // }
     const sliderChange = (event, newValue) => {
         setValue(newValue);
+        setLoading(true);
+        setTimeout(() => setLoading(false), 2000);
         dispatch(handleSlider({ filterProduct: allProducts, price: newValue }))
     };
     const list = () => (
@@ -51,7 +52,7 @@ export default function SwipeableTemporaryDrawer(props) {
             }}
         >
             <List>
-                <ListItem button >
+                <ListItem  >
                     <ListItemText ><span className='filter-drawer'>Filters</span></ListItemText>
                 </ListItem>
                 <Divider />
@@ -61,16 +62,13 @@ export default function SwipeableTemporaryDrawer(props) {
                 <ListItem button >
                     <ListItemText > <Box sx={{ width: 300 }}>
                         <Slider
-                            aria-label="Small steps"
-                            defaultValue={10}
-                            getAriaValueText={valuetext}
-                            step={10}
+                            getAriaLabel={() => 'Temperature range'}
+                            value={value}
                             onChange={sliderChange}
-                            marks
+                            valueLabelDisplay="auto"
+                            step={10}
                             min={10}
                             max={1000}
-                            valueLabelDisplay="auto"
-                            value={value}
                         />
                     </Box></ListItemText>
                 </ListItem>
@@ -131,7 +129,7 @@ export default function SwipeableTemporaryDrawer(props) {
         <div>
             <React.Fragment>
                 <SwipeableDrawer
-                    open={state ? props.setOpen : state}
+                    open={props.setOpen}
                 >
                     <IconButton
                         color="inherit"

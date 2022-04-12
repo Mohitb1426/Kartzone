@@ -1,10 +1,11 @@
-import { Avatar, Box, Grid } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './mainGrid.scss'
 
 export default function MainGrid() {
-    const allProducts = useSelector((state) =>state && state.Change.value.filterProduct.length > 1 ? state.Change.value.filterProduct : state.Change.value.finalProduct);
+    const allProducts = useSelector((state) => state && state.Change.value.filterProduct.length > 1 ? state.Change.value.filterProduct : state.Change.value.finalProduct);
+    console.log(allProducts)
     return (
         <div>
             <Grid container columns={20}>

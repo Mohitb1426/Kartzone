@@ -20,7 +20,7 @@ export const counterSlice = createSlice({
         },
         handleSlider: (state, action) => {
             const { filterProduct, price } = action.payload;
-            const displayFilterProducts = filterProduct.filter(product => product.price <= price)
+            const displayFilterProducts = filterProduct.filter(product => product.price > price[0] && product.price < price[1])
             state.value.filterProduct = displayFilterProducts;
         },
     },
