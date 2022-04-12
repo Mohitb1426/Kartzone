@@ -17,7 +17,6 @@ export default function PermanentDrawerLeft() {
   return (
     <div>
       <Box sx={{ display: "flex" }}>
-        <CssBaseline />
         <AppBar
           position="fixed"
           sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` ,color:'rgb(249, 251, 253)'}}
@@ -42,7 +41,6 @@ export default function PermanentDrawerLeft() {
           anchor="left"
         >
           <Toolbar />
-          <Divider />
           <SwipeableTemporaryDrawer />
         </Drawer>
         <Box
