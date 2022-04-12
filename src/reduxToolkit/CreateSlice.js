@@ -14,17 +14,18 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         handleProduct: (state, action) => {
-            const { type } = action.payload;
-            const displayproducts = myProducts.filter(product => product.type === type)
-            state.value.finalProduct = displayproducts;
-        },
-        handleSlider: (state, action) => {
-            const { filterProduct, price } = action.payload;
-            const displayFilterProducts = filterProduct.filter(product => product.price > price[0] && product.price < price[1])
-            state.value.filterProduct = displayFilterProducts;
-        },
+            let displayProducts = [];
+            const { type, price } = action.payload;
+            if (type !== '') {
+                displayProducts = myProducts.filter(product => product.type === type && product.price > price[0] && product.price < price[1])
+            }
+            else {
+                displayProducts = myProducts.filter(product => product.price > price[0] && product.price < price[1])
+            }
+            state.value.finalProduct = displayProducts;
+        }
     },
 })
-export const { handleProduct, handleSlider } = counterSlice.actions
+export const { handleProduct } = counterSlice.actions
 
 export default counterSlice.reducer

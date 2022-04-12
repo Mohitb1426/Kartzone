@@ -1,13 +1,33 @@
 .product-price {
-    display: flex;
+  display: flex;
+  text-align: center;
 }
-.product-details{
-    text-align: left;
-    font-size: 12px;
+.product-details {
+  text-align: left;
+  font-size: 12px;
 }
-.product-mainDiv{
-    padding: 40px;
+.product-mainDiv {
+  border-radius: 20px;
+  text-align: center;
+  padding: 1em;
+  margin-right: 1em;
 }
-.product-inside-div{
-   text-align: left;
+.product-pra {
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
+  margin-left: 10px;
+}
+.bold {
+  font-weight: bold;
+}
+.product-mainDiv :hover{
+    transform: scale(1.09);
+    transition-duration: 0.4s;
+}
+.product-hover{
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shodow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    background-color: rgb(249, 251, 253);
 }

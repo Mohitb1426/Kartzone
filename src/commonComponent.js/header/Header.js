@@ -3,16 +3,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import React from "react";
 import './HeaderStyle.scss';
 import MenuIcon from '@mui/icons-material/Menu';
-import SwipeableTemporaryDrawer from '../drawer/Drawer'
 import { IconButton } from "@material-ui/core";
 
 export default function Header() {
     const [openDrawer, setOpenDrawer] = React.useState(false);
+    const [drawerValue, setDrawerValue] = React.useState(false);
     const handleDrawer = () => {
         setOpenDrawer(!openDrawer);
     }
-    const onClose = () => {
+    const onClose = (val) => {
         setOpenDrawer(false);
+        setDrawerValue(val);
     }
     return (
         <div className='header-div'>
@@ -24,11 +25,10 @@ export default function Header() {
                         edge="end"
                         onClick={handleDrawer}>
                         <MenuIcon className="header-div__menu" />
-                        </IconButton>
-                    <h1 style={{"marginLeft":"15em"}}>Kartzone</h1>
+                    </IconButton>
+                    <h1 style={{ "marginLeft": "15em" }}>Kartzone</h1>
                 </Toolbar>
             </AppBar>
-            {openDrawer ? <SwipeableTemporaryDrawer setOpen={openDrawer} onClose={onClose} /> : null}
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CircularProgress, IconButton, styled } from '@material-ui/core';
+import { CircularProgress, Drawer, IconButton, styled } from '@material-ui/core';
 import { SwipeableDrawer } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -8,31 +8,26 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Slider } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { handleProduct, handleSlider } from '../../reduxToolkit/CreateSlice'
+import { useDispatch } from 'react-redux';
+import { handleProduct } from '../../reduxToolkit/CreateSlice'
 import './drawer.scss'
 
 export default function SwipeableTemporaryDrawer(props) {
-    const [state, setState] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
     const [value, setValue] = React.useState([0, 1000]);
+    const [category, setCategory] = React.useState('');
     const dispatch = useDispatch();
-    const allProducts = useSelector((state) => state.Change.value.finalProduct);
-
     const loaderEnable = (Type) => {
-        // setState(false);
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000);
-        dispatch(handleProduct({ type: Type }))
+        setTimeout(() => setLoading(false), 1000);
+        dispatch(handleProduct({ type: Type, price: value }))
+        setCategory(Type);
     }
-    // function valuetext(value: number) {
-    //     return `${value}°C`;
-    // }
     const sliderChange = (event, newValue) => {
         setValue(newValue);
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000);
-        dispatch(handleSlider({ filterProduct: allProducts, price: newValue }))
+        setTimeout(() => setLoading(false), 1000);
+        dispatch(handleProduct({ type: category, price: newValue }))
     };
     const list = () => (
         <Box
@@ -60,7 +55,7 @@ export default function SwipeableTemporaryDrawer(props) {
                     <ListItemText >Price</ListItemText>
                 </ListItem>
                 <ListItem button >
-                    <ListItemText > <Box sx={{ width: 300 }}>
+                    <ListItemText > <Box sx={{ width: 160 }}>
                         <Slider
                             getAriaLabel={() => 'Temperature range'}
                             value={value}
@@ -128,19 +123,8 @@ export default function SwipeableTemporaryDrawer(props) {
     return (
         <div>
             <React.Fragment>
-                <SwipeableDrawer
-                    open={props.setOpen}
-                >
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={props.onClose}
-                    ><ChevronLeftIcon /></IconButton>
-
-                    {list()}
-                </SwipeableDrawer>
-                {loading ? <CircularLoading /> : null}
+                {list()}
+                {/* {loading ? <CircularLoading /> : null} */}
             </React.Fragment>
         </div>
     );
