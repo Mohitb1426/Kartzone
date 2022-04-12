@@ -1,32 +1,25 @@
 import * as React from 'react';
-import { CircularProgress, Drawer, IconButton, styled } from '@material-ui/core';
-import { SwipeableDrawer } from '@material-ui/core';
+import {  styled } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Slider } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { handleProduct } from '../../reduxToolkit/CreateSlice'
 import './drawer.scss'
 
 export default function SwipeableTemporaryDrawer(props) {
-    const [loading, setLoading] = React.useState(false);
     const [value, setValue] = React.useState([0, 1000]);
     const [category, setCategory] = React.useState('');
     const dispatch = useDispatch();
     const loaderEnable = (Type) => {
-        setLoading(true);
-        setTimeout(() => setLoading(false), 1000);
         dispatch(handleProduct({ type: Type, price: value }))
         setCategory(Type);
     }
     const sliderChange = (event, newValue) => {
         setValue(newValue);
-        setLoading(true);
-        setTimeout(() => setLoading(false), 1000);
         dispatch(handleProduct({ type: category, price: newValue }))
     };
     const list = () => (
@@ -104,27 +97,10 @@ export default function SwipeableTemporaryDrawer(props) {
         opacity: 0.5,
         zIndex: 1
     });
-    const CircularLoading = () => (
-        <>
-            <CircularProgress
-                size={70}
-                sx={{
-                    position: "fixed",
-                    left: "50%",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 2,
-                    textAlign: "center",
-                }}
-            />
-            <DisabledBackground />
-        </>
-    );
     return (
         <div>
             <React.Fragment>
                 {list()}
-                {/* {loading ? <CircularLoading /> : null} */}
             </React.Fragment>
         </div>
     );
