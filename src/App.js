@@ -17,11 +17,10 @@ export default function PermanentDrawerLeft() {
   return (
     <div>
       <Box sx={{ display: "flex" }}>
-        <AppBar className='appBar-main'
-            //  sx={{ width: `calc(90% - ${drawerWidth}px)`}}
+        <AppBar 
         >
           <Toolbar>
-            <Typography variant="h6">
+            <Typography className='typo-class' variant="h6">
               Kartzone
             </Typography>
           </Toolbar>
