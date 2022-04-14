@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  styled } from '@material-ui/core';
+import { styled } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,20 +24,20 @@ export default function SwipeableTemporaryDrawer(props) {
     };
     const list = () => (
         <Box
-            sx={{
-                boxShadow: 3,
-                width: '20rem',
-                height: '8rem',
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-                color: (theme) =>
-                    theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-                p: 1,
-                m: 1,
-                borderRadius: 2,
-                textAlign: 'center',
-                fontSize: '0.875rem',
-                fontWeight: '700',
-            }}
+        // sx={{
+        //     boxShadow: 3,
+        //     width: '20rem',
+        //     height: '8rem',
+        //     bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+        //     color: (theme) =>
+        //         theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+        //     p: 1,
+        //     m: 1,
+        //     borderRadius: 2,
+        //     textAlign: 'center',
+        //     fontSize: '0.875rem',
+        //     fontWeight: '700',
+        // }}
         >
             <List>
                 <ListItem  >
@@ -45,10 +45,10 @@ export default function SwipeableTemporaryDrawer(props) {
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText >Price</ListItemText>
+                    <ListItemText className='filter-drawer-mobile-view' >Price</ListItemText>
                 </ListItem>
                 <ListItem button >
-                    <ListItemText > <Box sx={{ width: 160 }}>
+                    <ListItemText > <Box className='slider-box' >
                         <Slider
                             getAriaLabel={() => 'Temperature range'}
                             value={value}
@@ -71,19 +71,19 @@ export default function SwipeableTemporaryDrawer(props) {
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText onClick={() => loaderEnable('shoes')}>Shoes</ListItemText>
+                    <ListItemText className='filter-drawer-mobile-view' onClick={() => loaderEnable('shoes')}>Shoes</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText onClick={() => loaderEnable('bags')}>Bags</ListItemText>
+                    <ListItemText className='filter-drawer-mobile-view' onClick={() => loaderEnable('bags')}>Bags</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText onClick={() => loaderEnable('watches')}>Watches</ListItemText>
+                    <ListItemText className='filter-drawer-mobile-view' onClick={() => loaderEnable('watches')}>Watches</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem button >
-                    <ListItemText onClick={() => loaderEnable('scarfs')}>Scarf
+                    <ListItemText className='filter-drawer-mobile-view' onClick={() => loaderEnable('scarfs')}>Scarf
                     </ListItemText>
                 </ListItem>
             </List>

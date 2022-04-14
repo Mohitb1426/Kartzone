@@ -11,6 +11,7 @@
   text-align: center;
   padding: 1em;
   margin-right: 1em;
+  width: 80%;
 }
 .product-pra {
   text-decoration-line: line-through;
@@ -20,14 +21,66 @@
 .bold {
   font-weight: bold;
 }
-.product-mainDiv :hover{
-    transform: scale(1.09);
-    transition-duration: 0.4s;
+.product-mainDiv :hover {
+  transform: scale(1.09);
+  transition-duration: 0.4s;
 }
-.product-hover{
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    box-shodow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    background-color: rgb(249, 251, 253);
+.product-hover {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  box-shodow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  background-color: rgb(249, 251, 253);
+}
+.drawer-class {
+  width: 20%;
+}
+.MuiDrawer-paper {
+  width: 18%;
+  boxsizing: "border-box";
+}
+.box-image {
+  width: 80%;
+  height: 70%;
+}
+.MuiGrid-grid-xs-3 {
+  width: 60%;
+}
+.mainGrid-view {
+  width: 25%;
+}
+.appbar-main {
+  width: calc(90% - 240px);
+}
+.css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+  width: 82% !important;
+}
+@media (max-width: 37.5em) {
+  .drawer-class {
+    width: 40%;
+  }
+  .MuiDrawer-paper {
+    width: 35%;
+    boxsizing: "border-box";
+  }
+  .MuiGrid-grid-xs-3 {
+    width: 60%;
+  }
+  .product-mainDiv {
+    width: 100%;
+  }
+  .mainGrid-view {
+    width: 70%;
+  }
+  .css-11b3ww9-MuiPaper-root-MuiAppBar-root {
+    width: 65% !important;
+  }
+  .box-image {
+    width: 90%;
+    height: 60%;
+  }
+  .product-details {
+    text-align: left;
+    font-size: 9px;
+  }
 }

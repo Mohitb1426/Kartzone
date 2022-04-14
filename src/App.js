@@ -9,7 +9,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-
+import './components/mainGrid.scss'
 
 const drawerWidth = 240;
 
@@ -17,26 +17,16 @@ export default function PermanentDrawerLeft() {
   return (
     <div>
       <Box sx={{ display: "flex" }}>
-        <AppBar
-          position="fixed"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` ,color:'rgb(249, 251, 253)'}}
+        <AppBar className='appBar-main'
+            //  sx={{ width: `calc(90% - ${drawerWidth}px)`}}
         >
           <Toolbar>
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h6">
               Kartzone
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          sx={{
-            color: "#rgb(249, 251, 253)",
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-              width: drawerWidth,
-              boxSizing: "border-box"
-            }
-          }}
+        <Drawer className='drawer-class'
           variant="permanent"
           anchor="left"
         >
